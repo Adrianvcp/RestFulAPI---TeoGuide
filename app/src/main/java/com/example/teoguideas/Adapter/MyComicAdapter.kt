@@ -20,7 +20,7 @@ RecyclerView.Adapter<MyComicAdapter.MyViewHolder>()
 {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
         val itemView = LayoutInflater.from(context)
-            .inflate(R.layout.comic_item,p0,false)
+            .inflate(R.layout.centro_item,p0,false)
         return MyViewHolder(itemView)
     }
 
@@ -49,8 +49,8 @@ RecyclerView.Adapter<MyComicAdapter.MyViewHolder>()
         }
 
         init {
-            centro_image = itemView.findViewById(R.id.comic_image) as ImageView
-            centro_name = itemView.findViewById(R.id.comic_name) as TextView
+            centro_image = itemView.findViewById(R.id.centro_image) as ImageView
+            centro_name = itemView.findViewById(R.id.centro_name) as TextView
         }
 
         override fun onClick(p0: View?) {

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.kotlincomicreader.Adapter.MainSliderAdapter
 import com.example.kotlincomicreader.Adapter.MyComicAdapter
 import com.example.teoguideas.Common.Common
 import com.example.teoguideas.Retrofit.IComicAPI
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         swipe_refresh.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_orange_dark,android.R.color.background_dark)
         swipe_refresh.setOnRefreshListener {
             if (Common.isConnectedToInternet(baseContext)){
-                fetchBanner()
+
                 fetchComic()
             }
             else{
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
         swipe_refresh.post(Runnable {
             if (Common.isConnectedToInternet(baseContext)){
-                fetchBanner()
+
                 fetchComic()
             }
             else{
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({comicList ->
-                txt_comic.text = StringBuilder("Populares")
+                txt_comic.text = StringBuilder("Populares ")
                     .append(comicList.size)
                     .append("")
                 recycler_comic.adapter = MyComicAdapter(baseContext,comicList)
@@ -85,16 +84,5 @@ class MainActivity : AppCompatActivity() {
                 }))
     }
 
-    private fun fetchBanner() {
-        compositeDisposable.add(iComicAPI.bannerList
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                    banners -> banner_slider.setAdapter(MainSliderAdapter(banners))
-            },
-                {
-                    Toast.makeText(baseContext,"",Toast.LENGTH_SHORT).show()
-                }))
 
-    }
 }

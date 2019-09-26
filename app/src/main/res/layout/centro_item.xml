@@ -8,25 +8,28 @@
 
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="8dp"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/comic_image"
+            android:id="@+id/centro_image"
+            android:layout_width="169dp"
+            android:layout_height="214dp"
             android:scaleType="fitXY"
+
+
             />
 
         <TextView
-            android:id="@+id/comic_name"
-            android:text="Spider Man"
-            android:padding="8dp"
-            android:background="#80333639"
-            android:textColor="@android:color/white"
-            android:layout_gravity="bottom"
+            android:id="@+id/centro_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="242dp"
+
+            android:layout_gravity="bottom"
+            android:padding="8dp"
+            android:text="Spider Man"
+            android:textColor="@android:color/white" />
 
     </androidx.cardview.widget.CardView>
 
