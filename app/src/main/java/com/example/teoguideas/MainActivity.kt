@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 swipe_refresh.isRefreshing = false
             },
                 {thr ->
-                    Toast.makeText(baseContext,"Error while load comic",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext,"No se cargaron los datos",Toast.LENGTH_SHORT).show()
                     if (!swipe_refresh.isRefreshing)
                         dialog.dismiss()
                     swipe_refresh.isRefreshing = false
