@@ -29,5 +29,7 @@ class CentroHistorico {
         this.NCorx = NCorx
         this.NCory = NCory
         this.imgportada = imgportada
+
+        
     }
 }
