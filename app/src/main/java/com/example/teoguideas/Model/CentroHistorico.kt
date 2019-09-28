@@ -9,8 +9,9 @@ class CentroHistorico {
     var NCorx:Int?=null
     var NCory:Int?=null
     var imgportada:String?=null
-
+    
     constructor(){}
+
 
     constructor(
         idCentroH: Int?,
