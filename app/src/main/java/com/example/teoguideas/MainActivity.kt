@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+    
 
     private fun fetchComic() {
         val dialog = SpotsDialog.Builder()
