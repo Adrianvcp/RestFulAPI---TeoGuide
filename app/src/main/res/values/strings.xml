@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TeoGuideAS</string>
+    <string name="btn_Camara">Camara</string>
+    <string name="btn_Probando">Probando</string>
+    <string name="txtnamePerfil">Nombre Perfil</string>
+    <string name="txthistoria">Historia</string>
 </resources>

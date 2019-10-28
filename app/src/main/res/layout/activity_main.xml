@@ -22,7 +22,6 @@
             android:layout_height="wrap_content">
 
 
-
             <ImageView
                 android:id="@+id/btn_search"
                 android:src="@drawable/ic_search_white_24dp"
@@ -36,7 +35,28 @@
         <ss.com.bannerslider.Slider
             android:id="@+id/banner_slider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ss.com.bannerslider.Slider>
+            android:layout_height="wrap_content">
+
+        </ss.com.bannerslider.Slider>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <Button
+                android:id="@+id/btn_camara"
+                android:layout_width="101dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_Camara" />
+
+            <Button
+                android:id="@+id/btnProbando"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="205dp"
+                android:layout_toEndOf="@+id/btn_camara"
+                android:text="@string/btn_Probando" />
+        </RelativeLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -67,8 +87,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_comic"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
