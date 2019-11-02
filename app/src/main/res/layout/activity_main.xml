@@ -53,9 +53,18 @@
                 android:id="@+id/btnProbando"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="205dp"
+                android:layout_marginStart="52dp"
                 android:layout_toEndOf="@+id/btn_camara"
                 android:text="@string/btn_Probando" />
+
+            <Button
+                android:id="@+id/btnSubir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="75dp"
+                android:layout_toEndOf="@+id/btnProbando"
+                android:text="@string/btn_subir" />
+
         </RelativeLayout>
 
         <LinearLayout

@@ -4,4 +4,5 @@
     <string name="btn_Probando">Probando</string>
     <string name="txtnamePerfil">Nombre Perfil</string>
     <string name="txthistoria">Historia</string>
+    <string name="btn_subir">Subir</string>
 </resources>

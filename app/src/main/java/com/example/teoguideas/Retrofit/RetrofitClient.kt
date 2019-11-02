@@ -11,7 +11,7 @@ object RetrofitClient {
         get() {
             if (ourInstance == null)
                 ourInstance = Retrofit.Builder()
-                    .baseUrl("http://teoguide.herokuapp.com")
+                    .baseUrl("http://10.0.2.2:3000")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
@@ -20,3 +20,4 @@ object RetrofitClient {
 }
 
 //10.0.2.2
+//http://teoguide.herokuapp.com

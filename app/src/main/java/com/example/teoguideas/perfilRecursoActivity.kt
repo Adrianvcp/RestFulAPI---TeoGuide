@@ -35,9 +35,6 @@ class perfilRecursoActivity : AppCompatActivity() {
 
         Slider.init(PicassoImageLoadingService(this))
 
-        //recycler_comic.setHasFixedSize(true)
-        //recycler_comic.layoutManager = GridLayoutManager(this,2)
-
         swipe_refresh.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_orange_dark,android.R.color.background_dark)
         swipe_refresh.setOnRefreshListener {
             if (Common.isConnectedToInternet(baseContext)){
@@ -50,25 +47,22 @@ class perfilRecursoActivity : AppCompatActivity() {
         }
         swipe_refresh.post(Runnable {
             if (Common.isConnectedToInternet(baseContext)){
-
                 fetchComic()
             }
             else{
                 Toast.makeText(baseContext,"Please check u connection", Toast.LENGTH_SHORT).show()
-
             }
         })
-
     }
 
     private fun fetchComic() {
         val dialog = SpotsDialog.Builder()
             .setContext(this)
-            .setMessage("Please wait...")
+            .setMessage("Cargando...")
             .build()
         if (!swipe_refresh.isRefreshing)
             dialog.show()
-        compositeDisposable.add(iComicAPI.PerfilList
+        compositeDisposable.add(iComicAPI.SubirImagen
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({comicList ->
@@ -81,6 +75,7 @@ class perfilRecursoActivity : AppCompatActivity() {
                 println(comicList[0].dHistoria)
                 txtHistoria.text = comicList[0].tUbicacion
                 //recycler_comic.adapter = MyComicAdapter(baseContext,comicList)
+
                 if (!swipe_refresh.isRefreshing)
                     dialog.dismiss()
                 swipe_refresh.isRefreshing = false

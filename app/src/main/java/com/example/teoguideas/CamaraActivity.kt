@@ -62,7 +62,6 @@ class CamaraActivity : AppCompatActivity() {
 
     private fun startCamera() {
 
-        // TODO: Implement CameraX operations
         // Create configuration object for the viewfinder use case
         val previewConfig = PreviewConfig.Builder().apply {
             setTargetAspectRatio(Rational(1, 1))
@@ -84,11 +83,7 @@ class CamaraActivity : AppCompatActivity() {
             updateTransform()
         }
 
-
-
-
         // Add this before CameraX.bindToLifecycle
-
         // Create configuration object for the image capture use case
         val imageCaptureConfig = ImageCaptureConfig.Builder()
             .apply {
