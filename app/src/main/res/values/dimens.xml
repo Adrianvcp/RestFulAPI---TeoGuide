@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <dimen name="cnb_space">6dp</dimen>
+    <dimen name="cnb_medium_space">8dp</dimen>
+    <dimen name="cnb_double_space">12dp</dimen>
+    <dimen name="cnb_icon_size">24dp</dimen>
+
+    <dimen name="cnb_badge_size">12dp</dimen>
+    <dimen name="cnb_badge_size_numberless">6dp</dimen>
+    <dimen name="cnb_badge_text_size">8dp</dimen>
+    <dimen name="cnb_badge_stroke_width">1dp</dimen>
+
+</resources>

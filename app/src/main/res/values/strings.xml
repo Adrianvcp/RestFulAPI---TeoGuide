@@ -5,4 +5,14 @@
     <string name="txtnamePerfil">Nombre Perfil</string>
     <string name="txthistoria">Historia</string>
     <string name="btn_subir">Subir</string>
+    <string name="title_activity_navigation">navigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="discover">Discover</string>
+    <string name="settings">Settings</string>
 </resources>

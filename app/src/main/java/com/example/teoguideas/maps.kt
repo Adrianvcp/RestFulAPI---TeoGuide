@@ -1,14 +1,13 @@
 package com.example.teoguideas
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
+import androidx.fragment.app.FragmentActivity
 
-class iconoScreen : AppCompatActivity() {
+class maps : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Handler().postDelayed({startActivity(Intent(this@iconoScreen,MainNav::class.java))},3000)
+        setContentView(R.layout.activity_maps)
     }
 }

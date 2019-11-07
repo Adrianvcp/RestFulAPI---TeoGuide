@@ -1,14 +1,12 @@
 package com.example.teoguideas
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 
-class iconoScreen : AppCompatActivity() {
+class busarImagen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Handler().postDelayed({startActivity(Intent(this@iconoScreen,MainNav::class.java))},3000)
+        setContentView(R.layout.activity_busar_imagen)
     }
 }

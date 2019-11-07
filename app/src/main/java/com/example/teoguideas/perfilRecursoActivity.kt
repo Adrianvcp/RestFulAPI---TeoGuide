@@ -62,13 +62,13 @@ class perfilRecursoActivity : AppCompatActivity() {
             .build()
         if (!swipe_refresh.isRefreshing)
             dialog.show()
-        compositeDisposable.add(iComicAPI.SubirImagen
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({comicList ->
-                txtNombre.text = StringBuilder()
-                    .append(comicList.size)
-                    .append("")
+        compositeDisposable.add(iComicAPI.PerfilList
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({comicList ->
+                        txtNombre.text = StringBuilder()
+                            .append(comicList.size)
+                            .append("")
 
                 Picasso.get().load(comicList[0].imgportada).into(imageView)
                 txtNombre.text = comicList[0].nNombre
