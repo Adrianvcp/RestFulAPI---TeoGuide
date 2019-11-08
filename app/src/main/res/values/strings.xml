@@ -6,6 +6,11 @@
     <string name="txthistoria">Historia</string>
     <string name="btn_subir">Subir</string>
 
+    <string name="title_inicio">Inicio</string>
+    <string name="title_explorar">Explorar</string>
+    <string name="title_planes">Planes</string>
+    <string name="title_perfil">Perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
