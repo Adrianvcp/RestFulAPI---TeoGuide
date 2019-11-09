@@ -1,6 +1,7 @@
 package com.example.teoguideas.Controllers.Fragments
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -16,7 +17,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.example.teoguideas.Controllers.Activities.FichaTecnicaActivity
 
 import com.example.teoguideas.R
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -26,6 +29,8 @@ import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.fragment_explorar.*
 import java.io.IOException
 import java.util.*
@@ -47,6 +52,10 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
     private lateinit var fusedLocationClient:FusedLocationProviderClient
 
     private lateinit var lastLocation: Location
+
+    private val TAG="FIREBASEEEE"
+
+    private var searchString:String="huaca"
     companion object{
         private const val LOCATION_PERMISSION_REQUIREST_CODE=1
     }
@@ -60,6 +69,8 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         // Inflate the layout for this fragment
         fusedLocationClient=LocationServices.getFusedLocationProviderClient(requireActivity())
 
@@ -76,6 +87,33 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
             setUpMap()
             initSearchingMethods()
         })
+
+        btnFichaTenica.setOnClickListener{
+            var db=FirebaseFirestore.getInstance()
+            val docRef = db.collection("centros").whereArrayContains("hints",searchString.toLowerCase())
+            docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        if(document.documents.size>0){
+                            Log.d(TAG, "DocumentSnapshot data: ${document.documents.get(0).data?.get("url")}")
+                            var urltmp:String=document.documents.get(0).data?.get("url").toString()
+                            val intent= Intent(context,FichaTecnicaActivity::class.java)
+                            intent.putExtra("url",urltmp)
+                            startActivity(intent)
+                        }else{
+                            Toast.makeText(context,"Sitio no encontrado",Toast.LENGTH_LONG).show()
+                        }
+
+                    } else {
+                        Log.d(TAG, "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d(TAG, "get failed with ", exception)
+                }
+
+
+        }
     }
 
     override fun onResume() {
@@ -129,7 +167,7 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
         }
     }
     fun geoLocate(){
-        var searchString=mSearchText.text.toString()
+        searchString=mSearchText.text.toString()
         var geocoder:Geocoder= Geocoder(context)
         var list:List<Address>? =null
         try {
