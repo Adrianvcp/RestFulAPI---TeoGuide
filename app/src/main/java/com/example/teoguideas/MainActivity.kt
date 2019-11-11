@@ -31,6 +31,7 @@ import android.widget.Toast
 import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.kotlincomicreader.Adapter.MyComicAdapter
 import com.example.teoguideas.Common.Common
@@ -59,7 +60,7 @@ import java.util.concurrent.TimeUnit
 
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
 
     internal var compositeDisposable = CompositeDisposable()
     internal lateinit var iComicAPI: IComicAPI

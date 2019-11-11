@@ -65,6 +65,7 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
 
     lateinit var mapFragment:SupportMapFragment
     lateinit var googleMap: GoogleMap
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -9,7 +9,9 @@ import com.example.teoguideas.Controllers.Fragments.ExplorarFragment
 import com.example.teoguideas.Controllers.Fragments.InicioFragment
 import com.example.teoguideas.Controllers.Fragments.PerfilFragment
 import com.example.teoguideas.Controllers.Fragments.PlanesFragment
+import com.example.teoguideas.MainActivity
 import com.example.teoguideas.R
+import com.example.teoguideas.perfilRecursoActivity
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment

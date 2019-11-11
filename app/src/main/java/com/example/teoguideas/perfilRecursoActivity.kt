@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.kotlincomicreader.Adapter.MyComicAdapter
 import com.example.teoguideas.Common.Common
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_perfil_recurso.*
 import ss.com.bannerslider.Slider
 import java.lang.StringBuilder
 
-class perfilRecursoActivity : AppCompatActivity() {
+class perfilRecursoActivity : FragmentActivity() {
 
     internal var compositeDisposable = CompositeDisposable()
     internal lateinit var iComicAPI: IComicAPI
