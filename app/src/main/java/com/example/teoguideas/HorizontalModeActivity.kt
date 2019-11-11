@@ -5,12 +5,11 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.senthil.kotlin_bottomnavigationview.Fragment.FirstFragment
 import com.example.senthil.kotlin_bottomnavigationview.Fragment.SecondFragment
 import com.example.senthil.kotlin_bottomnavigationview.Fragment.ThirdFragment
-import com.example.teoguideas.util.colorAnimation
-import com.example.teoguideas.ChipNavigationBar
-import com.example.teoguideas.util.colorAnimation
 
 class HorizontalModeActivity : AppCompatActivity() {
 
@@ -27,38 +26,32 @@ class HorizontalModeActivity : AppCompatActivity() {
         lastColor = ContextCompat.getColor(this, R.color.blank)
         val MainActivity = MainActivity()
 
-        menu.setOnItemSelectedListener { id ->
-
-
-            when (it.itemId) {
-
-                R.id.navigation_dashboard -> {
+        menu.setOnItemSelectedListener {
+            when (it) {
+                R.id.activity -> {
                     val MainActivity = MainActivity()
                     val firstFragment = FirstFragment()
-                    openFragment(firstFragment)
-                    return@OnNavigationItemSelectedListener true
+                    openActivity(MainActivity)
+                    //return@OnNavigationItemSelectedListener true
                 }
 
                 R.id.navigation_billUpload -> {
-                    val secondFragment = SecondFragment()
-                    openFragment(secondFragment)
-                    return@OnNavigationItemSelectedListener true
+                    val MainActivity = MainActivity()
+                    openActivity(MainActivity)
+                    //return@OnNavigationItemSelectedListener true
                 }
 
                 R.id.navigation_settings -> {
-                    val thirdFragment = ThirdFragment()
-                    openFragment(thirdFragment)
-                    return@OnNavigationItemSelectedListener true
+                    val MainActivity = MainActivity()
+                    openActivity(MainActivity)
+                    //return@OnNavigationItemSelectedListener true
                 }
             }
 
+
+            /*
             val option = when (id) {
-                R.id.home -> {
-                    val MainActivity = MainActivity()
-                    val firstFragment = FirstFragment()
-                    openFragment(firstFragment)
-                    return@OnNavigationItemSelectedListener true
-                }
+
                 R.id.activity -> R.color.activity to "Activity"
                 R.id.favorites -> R.color.favorites to "Favorites"
                 R.id.settings -> R.color.settings to "Settings"
@@ -70,7 +63,28 @@ class HorizontalModeActivity : AppCompatActivity() {
             lastColor = color
 
             title.text = option.second
+
+             */
         }
+
+
+    }
+    private fun openFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
+    private fun openActivity(fragment: MainActivity) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+}
+
+private fun FragmentTransaction.replace(container: Int, fragment: MainActivity) {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
