@@ -1,5 +1,6 @@
 package com.example.teoguideas.Controllers.Activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -51,5 +52,9 @@ class RootActivity : AppCompatActivity() {
             return PerfilFragment()
         }
         return InicioFragment()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

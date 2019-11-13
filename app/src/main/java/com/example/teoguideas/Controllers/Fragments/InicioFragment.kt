@@ -3,6 +3,7 @@ package com.example.teoguideas.Controllers.Fragments
 import android.Manifest
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.ComponentName
 import android.content.Context
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
@@ -34,6 +36,7 @@ import com.example.teoguideas.Controllers.Activities.RootActivity
 import com.example.teoguideas.R
 import com.example.teoguideas.Retrofit.IComicAPI
 import com.example.teoguideas.Service.PicassoImageLoadingService
+import com.example.teoguideas.perfilRecursoActivity
 import com.google.android.gms.location.LocationServices
 import dmax.dialog.SpotsDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -74,7 +77,7 @@ class InicioFragment : Fragment() {
     private var permissionsToRequest: ArrayList<String>? = null
     private val permissions = ArrayList<String>()
     private val permissionsRejected = ArrayList<String>()
-
+    lateinit var imageView:ImageView
 
 
     private fun getPathFromURI(contentUri: Uri?): String {
@@ -240,101 +243,20 @@ class InicioFragment : Fragment() {
         }
 
     }
-/*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        return Sample(R.layout.activity_main)
-        askPermissions()
-        //Init API
-        iComicAPI = Common.api
-
-
-        Slider.init(PicassoImageLoadingService(this))
-
-        recycler_comic.setHasFixedSize(true)
-        recycler_comic.layoutManager = GridLayoutManager(this,2)
-
-        swipe_refresh.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_orange_dark,android.R.color.background_dark)
-        swipe_refresh.setOnRefreshListener {
-            if (Common.isConnectedToInternet(baseContext)){
-
-                fetchComic()
-            }
-            else{
-                Toast.makeText(baseContext,"Please check u connection", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-        swipe_refresh.post(Runnable {
-            if (Common.isConnectedToInternet(baseContext)){
-
-                fetchComic()
-            }
-            else{
-                Toast.makeText(baseContext,"Please check u connection", Toast.LENGTH_SHORT).show()
-
-            }
-        })
-
-        btn_camara.setOnClickListener(View.OnClickListener {
-            val intent: Intent = Intent(this, CamaraActivity::class.java)
-            startActivity(intent)
-        })
-
-        /*
-        btnProbando.setOnClickListener(View.OnClickListener {
-            val intent:Intent = Intent(this,perfilRecursoActivity::class.java)
-            startActivity(intent)
-        })
-        */
-
-        btnProbando.setOnClickListener {
-            println("Funcionando")
-            val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-                type = "image/*"
-            }
-
-            //val chooserIntent:Intent = Intent.createChooser(intent,"Ingrese la imagen")
-
-
-            //startActivityForResult(Intent.createChooser(intent, "Ingrese la Imagen"), 2)
-            startActivityForResult(pickImageChooserIntent, 200);
-            println("Funcionando22")
-
-
-            //val filePath = getImageFilePath(intent)
-            //if (filePath != null) {
-            //    println("Entro")
-            //    mBitmap = BitmapFactory.decodeFile(filePath)
-
-            //}
-        }
-
-        btnSubir.setOnClickListener {
-            if (mBitmap != null)
-                println("ENTRE GA")
-            multipartImageUpload()
-        }
-
-    }
-
-
-
- */
- */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-
-
-        return inflater.inflate(R.layout.activity_main, container, false)
+        var v = inflater.inflate(R.layout.activity_main, container, false)
+        imageView = v.findViewById<ImageView>(R.id.imageView)
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        askPermissions()
         iComicAPI = Common.api
 
 
@@ -369,39 +291,24 @@ class InicioFragment : Fragment() {
 
         })
 
-        /*
-        btnProbando.setOnClickListener(View.OnClickListener {
-            val intent:Intent = Intent(this,perfilRecursoActivity::class.java)
-            startActivity(intent)
-        })
-        */
 
         btnProbando.setOnClickListener {
             println("Funcionando")
-            val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
-                type = "image/*"
-            }
 
-            //val chooserIntent:Intent = Intent.createChooser(intent,"Ingrese la imagen")
+            startActivityForResult(pickImageChooserIntent, IMAGE_RESULT);
 
 
-            //startActivityForResult(Intent.createChooser(intent, "Ingrese la Imagen"), 2)
-            startActivityForResult(pickImageChooserIntent, 200);
-            println("Funcionando22")
-
-
-            //val filePath = getImageFilePath(intent)
-            //if (filePath != null) {
-            //    println("Entro")
-            //    mBitmap = BitmapFactory.decodeFile(filePath)
-
-            //}
         }
 
         btnSubir.setOnClickListener {
-            if (mBitmap != null)
-                println("ENTRE GA")
-            multipartImageUpload()
+            //val intent:Intent = Intent(this,perfilRecursoActivity::class.java)
+            if (mBitmap != null) {
+                multipartImageUpload()
+                //startActivity(intent)
+            }
+            else {
+                Toast.makeText(activity!!.applicationContext, "Bitmap is null. Try again", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -414,12 +321,21 @@ class InicioFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
 
-        println(data)
-        val filePath = getImageFilePath(data)
-        if (filePath != null) {
-            mBitmap = BitmapFactory.decodeFile(filePath)
 
-        }
+            //val imageView = findViewById<ImageView>(R.id.imageView)
+
+            if (requestCode == IMAGE_RESULT) {
+
+
+                val filePath = getImageFilePath(data)
+                if (filePath != null) {
+                    mBitmap = BitmapFactory.decodeFile(filePath)
+
+                    imageView.setImageBitmap(mBitmap)
+                }
+            }
+
+
 
 
     }
