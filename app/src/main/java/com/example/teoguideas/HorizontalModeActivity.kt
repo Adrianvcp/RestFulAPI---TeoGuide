@@ -28,16 +28,12 @@ class HorizontalModeActivity : AppCompatActivity() {
 
         menu.setOnItemSelectedListener {
             when (it) {
-                R.id.activity -> {
-                    val MainActivity = MainActivity()
-                    val firstFragment = FirstFragment()
-                    openActivity(MainActivity)
-                    //return@OnNavigationItemSelectedListener true
-                }
 
-                R.id.navigation_billUpload -> {
-                    val MainActivity = MainActivity()
-                    openActivity(MainActivity)
+
+                R.id.activity -> {
+
+                    val secondFragment = SecondFragment()
+                    openFragment(secondFragment)
                     //return@OnNavigationItemSelectedListener true
                 }
 
