@@ -19,7 +19,7 @@ interface IComicAPI {
     @get:GET("buscarFoto")
     val PerfilList:Observable<List<CentroHistorico>>
 
-    @get:POST("upload")
+    @get:POST("imgSearch")
     val SubirImagen:Observable<List<CentroHistorico>>
 
     @Multipart

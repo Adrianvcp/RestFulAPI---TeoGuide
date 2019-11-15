@@ -21,6 +21,15 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_perfil_recurso.*
 import ss.com.bannerslider.Slider
 import java.lang.StringBuilder
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
+
 
 class perfilRecursoActivity : FragmentActivity() {
 
@@ -63,14 +72,15 @@ class perfilRecursoActivity : FragmentActivity() {
             .build()
         if (!swipe_refresh.isRefreshing)
             dialog.show()
-        compositeDisposable.add(iComicAPI.SubirImagen
+        compositeDisposable.add(iComicAPI.PerfilList
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({comicList ->
+            .subscribe( {comicList ->
                 txtNombre.text = StringBuilder()
                     .append(comicList.size)
                     .append("")
 
+                Picasso.get().load(comicList[0].imgportada)
                 Picasso.get().load(comicList[0].imgportada).into(imageView)
                 txtNombre.text = comicList[0].nNombre
                 println(comicList[0].dHistoria)
@@ -87,5 +97,32 @@ class perfilRecursoActivity : FragmentActivity() {
                         dialog.dismiss()
                     swipe_refresh.isRefreshing = false
                 }))
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        //DETERMINE WHO STARTED THIS ACTIVITY
+        val sender = this.intent.extras!!.getString("SENDER_KEY")
+
+        //IF ITS THE FRAGMENT THEN RECEIVE DATA
+        if (sender != null) {
+            this.receiveData()
+            Toast.makeText(this, "Received", Toast.LENGTH_SHORT).show()
+
+        }
+    }
+    private fun receiveData() {
+        //RECEIVE DATA VIA INTENT
+        val i = intent
+        val name = i.getStringExtra("NAME_KEY")
+        val year = i.getIntExtra("YEAR_KEY", 0)
+
+        //Picasso.get().load(comicList[0].imgportada).into(imageView)
+        txtNombre.text = name
+
+        txtHistoria.text = name
+
+
     }
 }

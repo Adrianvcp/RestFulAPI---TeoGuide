@@ -3,22 +3,14 @@ package com.example.teoguideas.Controllers.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.teoguideas.Controllers.Fragments.ExplorarFragment
 import com.example.teoguideas.Controllers.Fragments.InicioFragment
 import com.example.teoguideas.Controllers.Fragments.PerfilFragment
 import com.example.teoguideas.Controllers.Fragments.PlanesFragment
-import com.example.teoguideas.MainActivity
 import com.example.teoguideas.R
-import com.example.teoguideas.perfilRecursoActivity
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_root.*
-import kotlin.math.log
 
 class RootActivity : AppCompatActivity() {
 
