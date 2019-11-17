@@ -25,17 +25,17 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
+        android:id="@+id/relLayout1"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/white_corner"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/white_corner"
-        android:id="@+id/relLayout1"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/ic_magnify"
@@ -49,15 +49,14 @@
 
         <EditText
             android:id="@+id/mSearchText"
-            android:background="@null"
-            android:hint="Buscar Centro historico"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/ic_magnify"
             android:layout_centerVertical="true"
-            android:textSize="15sp"
+            android:layout_toRightOf="@+id/ic_magnify"
+            android:background="@null"
+            android:hint="Buscar Centro historico"
             android:textColor="#000"
-            />
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -66,6 +65,7 @@
         android:layout_width="48dp"
         android:layout_height="46dp"
         android:text="Button"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.04"

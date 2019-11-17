@@ -6,6 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".Controllers.Activities.RootActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/topbar_main"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:background="@color/toolBarColor"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolBarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Inicio"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="18dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:id="@+id/MainSearchBar"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@color/toolBarColor"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar_main">
+
+        <RelativeLayout
+            android:id="@+id/relLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/white_corner"
+            android:elevation="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/inicio_btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="4dp"
+                android:elevation="15dp"
+                android:src="@drawable/ic_magnify"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_magnify" />
+
+            <EditText
+                android:id="@+id/searchTextMain"
+                android:layout_width="309dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/inicio_btn_cancel_search"
+                android:layout_toEndOf="@+id/inicio_btn_search"
+
+                android:background="@null"
+                android:elevation="15dp"
+                android:hint="Buscar Centro historico"
+                android:imeOptions="actionSearch"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/inicio_btn_cancel_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="false"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:elevation="15dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="0dp"
@@ -13,11 +111,21 @@
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496">
+        app:layout_constraintTop_toBottomOf="@+id/topbar_main">
+
 
     </FrameLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearchResult"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/textColor"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/MainSearchBar" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationBar"
         android:layout_width="0dp"

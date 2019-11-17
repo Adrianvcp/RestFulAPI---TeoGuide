@@ -19,7 +19,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.teoguideas.Adapter.CustomMarkerInfoWindowView
 import com.example.teoguideas.Controllers.Activities.FichaTecnicaActivity
+import com.example.teoguideas.Model.CentroHistorico
 
 import com.example.teoguideas.R
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -84,13 +87,43 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
             googleMap=it
             googleMap.setOnMarkerClickListener(this)
             googleMap.uiSettings.isZoomControlsEnabled=true
-            setUpMap()
-            initSearchingMethods()
-        })
 
+            googleMap.setInfoWindowAdapter(CustomMarkerInfoWindowView(context!!))
+            googleMap.setOnInfoWindowClickListener(GoogleMap.OnInfoWindowClickListener {
+                var tmpCentro:CentroHistorico=it.tag as CentroHistorico
+                val intent= Intent(context, FichaTecnicaActivity::class.java)
+                intent.putExtra("url","http://granmuseo.calidda.com.pe" + tmpCentro.url)
+                startActivity(intent)
+            })
+            BuildMarkerUserLocation()
+            //initSearchingMethods()
+            var db= FirebaseFirestore.getInstance()
+            val docRef = db.collection("centrosHistoricos")
+            docRef
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        if(document.data?.get("lat")!=null){
+
+
+                            var centroH:CentroHistorico=CentroHistorico()
+                            centroH.tUbicacion=document.data?.get("ubicacion").toString()
+                            centroH.url=document.data?.get("url").toString()
+                            centroH.nNombre=document.data?.get("nombre").toString()
+                            centroH.NLat=document.data?.get("lat").toString().toFloat()
+                            centroH.NLong=document.data?.get("long").toString().toFloat()
+                            var currentLatLong=LatLng(centroH.NLat?.toDouble()!!,centroH.NLong?.toDouble()!!)
+
+                            placeMarker(currentLatLong,"ERROR AL CARGAR CUSTOM INFO WINDOW",centroH)
+                        }
+                        Log.d(TAG, "${document.id} => ${document.data}")
+                    }
+                }
+        })
+/*
         btnFichaTenica.setOnClickListener{
             var db=FirebaseFirestore.getInstance()
-            val docRef = db.collection("centros").whereArrayContains("hints",searchString.toLowerCase())
+            val docRef = db.collection("centrosHistoricos").whereArrayContains("hints",searchString.toLowerCase())
             docRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
@@ -114,16 +147,19 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
 
 
         }
+        */
+
     }
 
     override fun onResume() {
         super.onResume()
     }
-    private fun setUpMap(){
+    private fun BuildMarkerUserLocation(){
         if(ActivityCompat.checkSelfPermission(requireContext(),android.Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
            requestPermissions(
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
                 LOCATION_PERMISSION_REQUIREST_CODE)
+            BuildMarkerUserLocation()
             return
         }
         googleMap.isMyLocationEnabled = true
@@ -132,18 +168,21 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
 
                 lastLocation=it
                 var currentLatLong=LatLng(it.latitude,it.longitude)
-                placeMarker(currentLatLong,"Mi ubicacion")
+                //placeMarker(currentLatLong,"Mi ubicacion")
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom((currentLatLong),13f))
             }
 
         }
     }
-    private fun placeMarker(location:LatLng,title:String){
+    private fun placeMarker(location:LatLng,title:String,centro:CentroHistorico){
         var marckerOption= MarkerOptions().position(location).title(title)
-        googleMap.addMarker(marckerOption)
+
+        var marker=googleMap.addMarker(marckerOption)
+        marker.tag=centro
     }
     private fun searchAction(){
         geoLocate()
+        //hidde keyboard
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
@@ -179,7 +218,7 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
         if(size > 0){
             var address:Address?=list?.get(0)
             var coords=LatLng(address?.latitude?:0.0,address?.longitude?:0.0)
-            placeMarker(coords,address?.getAddressLine(0)?:"")
+            //placeMarker(coords,address?.getAddressLine(0)?:"")
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom((coords),13f))
 
         }
