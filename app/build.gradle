@@ -21,6 +21,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+
+        checkReleaseBuilds false
+
+    }
+
 }
 
 dependencies {
@@ -69,4 +75,3 @@ dependencies {
     implementation 'com.beust:klaxon:5.0.1'
 
 }
-apply plugin: 'com.google.gms.google-services'
