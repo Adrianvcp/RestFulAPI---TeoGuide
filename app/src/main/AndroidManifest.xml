@@ -32,6 +32,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -40,7 +44,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Controllers.Activities.EditarPerfilActivity"></activity>
+
         <activity android:name=".Controllers.Activities.NuevoPlanActivity" />
         <activity android:name=".Controllers.Activities.LoginActivity" />
         <activity android:name=".Controllers.Activities.SignInActivity">

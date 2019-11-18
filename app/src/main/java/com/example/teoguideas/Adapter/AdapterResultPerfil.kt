@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlincomicreader.Adapter.MyComicAdapter
 import com.example.teoguideas.Common.Common
 import com.example.teoguideas.Interface.IRecyclerOnClick
 import com.example.teoguideas.Model.CentroHistorico
@@ -51,7 +50,7 @@ class AdapterResultPerfil(internal var context: Context,
 
         init {
             centro_image = itemView.findViewById(R.id.centro_image) as ImageView
-            centro_name = itemView.findViewById(R.id.txtNombre) as TextView
+            centro_name = itemView.findViewById(R.id.txtHistoria) as TextView
         }
 
         override fun onClick(p0: View?) {

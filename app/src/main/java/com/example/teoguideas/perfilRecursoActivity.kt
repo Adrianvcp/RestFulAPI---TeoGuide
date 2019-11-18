@@ -1,14 +1,9 @@
 package com.example.teoguideas
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.kotlincomicreader.Adapter.MyComicAdapter
 import com.example.teoguideas.Common.Common
-import com.example.teoguideas.Interface.IRecyclerOnClick
 import com.example.teoguideas.Retrofit.IComicAPI
 import com.example.teoguideas.Service.PicassoImageLoadingService
 import com.squareup.picasso.Picasso
@@ -66,12 +61,12 @@ class perfilRecursoActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({comicList ->
-                txtNombre.text = StringBuilder()
+                txtHistoria.text = StringBuilder()
                     .append(comicList.size)
                     .append("")
 
                 Picasso.get().load(comicList[0].imgportada).into(imageView)
-                txtNombre.text = comicList[0].nNombre
+                txtHistoria.text = comicList[0].nNombre
                 println(comicList[0].dHistoria)
                 txtHistoria.text = comicList[0].tUbicacion
                 //recycler_comic.adapter = MyComicAdapter(baseContext,comicList)
