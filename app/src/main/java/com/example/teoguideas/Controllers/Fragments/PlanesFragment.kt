@@ -60,7 +60,7 @@ class PlanesFragment : Fragment() {
         floatingActionButton.setOnClickListener{
             var intent=Intent(activity,NuevoPlanActivity::class.java)
             intent.putExtra("userId",userId);
-            this.startActivityForResult(intent,REQUEST_CODE_NUEVOPLAN)
+            startActivityForResult(intent,REQUEST_CODE_NUEVOPLAN)
         }
         fetchPlanes()
     }
