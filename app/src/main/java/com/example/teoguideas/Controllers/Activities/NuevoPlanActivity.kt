@@ -109,7 +109,7 @@ var userId:String=""
             .addOnSuccessListener {documentReference ->
                 Log.d("INSERTED USER", "DocumentSnapshot written with ID: ${documentReference.id}")
                 var resultIntent= Intent()
-                //resultIntent.putExtra("result","algun resultado") no hay nada que retonar
+                resultIntent.putExtra("result","algun resultado")
                 setResult(Activity.RESULT_OK,resultIntent)
                 finish()
             }

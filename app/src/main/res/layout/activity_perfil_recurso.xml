@@ -36,7 +36,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/txtHistoria"
+            android:id="@+id/txtHistoria2"
             android:layout_width="match_parent"
             android:layout_height="153dp"
             android:fontFamily="sans-serif-light"

@@ -1,35 +1,42 @@
 {
   "project_info": {
-    "project_number": "194738629461",
-    "firebase_url": "https://teoguide-4314a.firebaseio.com",
-    "project_id": "teoguide-4314a",
-    "storage_bucket": "teoguide-4314a.appspot.com"
+    "project_number": "537336580588",
+    "firebase_url": "https://teoguide-6e8d5.firebaseio.com",
+    "project_id": "teoguide-6e8d5",
+    "storage_bucket": "teoguide-6e8d5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:194738629461:android:b8ae39d615dbb3fec6dddc",
+        "mobilesdk_app_id": "1:537336580588:android:8d5364e56faf98c955d8c9",
         "android_client_info": {
           "package_name": "com.example.teoguideas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "194738629461-tn4ib77aag6ano02hjtrml4br9kucu94.apps.googleusercontent.com",
+          "client_id": "537336580588-0a78jcvj7d1h292cbff2pud00jruo91r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCM_YCyHJ8xOYDHIKwGtCPRLaN1zvBtcis"
+          "current_key": "AIzaSyAPVBYccdBe-6G-iX6BKn8dtqSX9e8kcpQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "194738629461-tn4ib77aag6ano02hjtrml4br9kucu94.apps.googleusercontent.com",
+              "client_id": "537336580588-0a78jcvj7d1h292cbff2pud00jruo91r.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "537336580588-bfj75umtheu3olnr0f8mo70i3b1tdbc7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pe.edu.upc.AppFBTeoGuide"
+              }
             }
           ]
         }

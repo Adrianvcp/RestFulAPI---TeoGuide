@@ -253,7 +253,7 @@ class RootActivity : AppCompatActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
+        super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
 
@@ -437,18 +437,22 @@ class RootActivity : AppCompatActivity() {
         clearSearchEnviroment()
         if(item.itemId==R.id.navigation_inicio){
             MainSearchBar.visibility = View.VISIBLE
+            floatingActionButton.show()
             toolBarTitle.text="Inicio"
             return InicioFragment()
         }else if(item.itemId==R.id.navigation_explorar){
             MainSearchBar.visibility = View.INVISIBLE
+            floatingActionButton.hide()
             toolBarTitle.text="Explorar"
             return ExplorarFragment()
         }else if(item.itemId==R.id.navigation_planes){
             MainSearchBar.visibility = View.INVISIBLE
+            floatingActionButton.hide()
             toolBarTitle.text="Planes"
             return PlanesFragment.newInstance(userId?:"XXXX")
         }else if(item.itemId==R.id.navigation_perfil){
             MainSearchBar.visibility = View.INVISIBLE
+            floatingActionButton.hide()
             toolBarTitle.text="Perfil"
             return PerfilFragment.newInstance(userId?:"xxxx")
         }
@@ -501,7 +505,6 @@ class RootActivity : AppCompatActivity() {
         val inputManager:InputMethodManager =getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.SHOW_FORCED)
     }
-
 
     companion object {
         private val ALL_PERMISSIONS_RESULT = 107

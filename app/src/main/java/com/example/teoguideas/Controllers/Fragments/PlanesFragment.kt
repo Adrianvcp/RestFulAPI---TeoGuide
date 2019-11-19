@@ -60,21 +60,21 @@ class PlanesFragment : Fragment() {
         floatingActionButton.setOnClickListener{
             var intent=Intent(activity,NuevoPlanActivity::class.java)
             intent.putExtra("userId",userId);
-            startActivityForResult(intent,REQUEST_CODE_NUEVOPLAN)
+            this.startActivityForResult(intent,REQUEST_CODE_NUEVOPLAN)
         }
         fetchPlanes()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==REQUEST_CODE_NUEVOPLAN){
+
             if(resultCode == Activity.RESULT_OK){
                 Toast.makeText(context,"Registro Guardado Exitosamente", Toast.LENGTH_LONG).show()
                 //var result=data?.getStringExtra("result") capturar datos devueltos
                 //fetch planes por usuario actual
                 fetchPlanes()
             }
-        }
+
     }
     override fun onResume() {
         super.onResume()

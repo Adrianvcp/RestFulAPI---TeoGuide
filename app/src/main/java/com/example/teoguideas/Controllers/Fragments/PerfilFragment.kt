@@ -66,13 +66,14 @@ class PerfilFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==SELECT_PHOTO_REQUEST_CODE && resultCode== Activity.RESULT_OK && data!=null){
+        if(resultCode== Activity.RESULT_OK && data!=null){
             selectPhotoUri=data.data
+            btn_select_photo.text=""
             val bitmap=MediaStore.Images.Media.getBitmap(context?.contentResolver,selectPhotoUri)
             val bitmapDrawable=BitmapDrawable(bitmap)
             btn_select_photo.setBackgroundDrawable(bitmapDrawable)
 
-            uploadImageToFirebaseStorage()
+            //uploadImageToFirebaseStorage()
         }
     }
     private fun uploadImageToFirebaseStorage(){
@@ -93,8 +94,11 @@ class PerfilFragment : Fragment() {
         val docRef = db.collection("usuarios").document(userId?:"xxxx")
         docRef.get()
             .addOnSuccessListener { result ->
-                textView_nombre.text=result.get("nombre").toString()
-                textView_correo.text=result.get("correo").toString()
+                if(context!=null){
+                    textView_nombre.text=result.get("nombre").toString()
+                    textView_correo.text=result.get("correo").toString()
+                }
+
             }
             .addOnFailureListener { exception ->
 

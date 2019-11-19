@@ -31,7 +31,7 @@ class AdapterInicioSearch(var arrResults: List<InicioSearchResult>) :
         holder.bindTo(arrResults[position])
         holder.itemView.setOnClickListener{
             val intent= Intent(holder.itemView.context, FichaTecnicaActivity::class.java)
-            intent.putExtra("url","http://granmuseo.calidda.com.pe/" + arrResults.get(position).url)
+            intent.putExtra("url",arrResults.get(position).url)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }

@@ -30,7 +30,7 @@ class AdapterRecomendados(var arrCentrosHistoricos: List<CentroHistorico>) :
         holder.bindTo(arrCentrosHistoricos[position])
         holder.itemView.setOnClickListener{
             val intent= Intent(holder.itemView.context, FichaTecnicaActivity::class.java)
-            intent.putExtra("url","http://granmuseo.calidda.com.pe/" + arrCentrosHistoricos.get(position).url)
+            intent.putExtra("url",arrCentrosHistoricos.get(position).url)
             startActivity(holder.itemView.context,intent,null)
         }
     }
@@ -41,7 +41,7 @@ class AdapterRecomendados(var arrCentrosHistoricos: List<CentroHistorico>) :
         val descTextView = itemView.textView_descripcion
 
         fun bindTo(centroH: CentroHistorico) {
-            val url:String="http://granmuseo.calidda.com.pe${centroH.imgportada}"
+            val url:String=centroH.imgportada?:""
             pictureImageView.apply {
                 setDefaultImageResId(R.mipmap.ic_launcher)
                 setErrorImageResId(R.mipmap.ic_launcher)

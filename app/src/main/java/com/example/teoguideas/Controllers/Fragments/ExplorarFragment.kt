@@ -92,7 +92,7 @@ class ExplorarFragment : Fragment(), OnMarkerClickListener {
             googleMap.setOnInfoWindowClickListener(GoogleMap.OnInfoWindowClickListener {
                 var tmpCentro:CentroHistorico=it.tag as CentroHistorico
                 val intent= Intent(context, FichaTecnicaActivity::class.java)
-                intent.putExtra("url","http://granmuseo.calidda.com.pe" + tmpCentro.url)
+                intent.putExtra("url",tmpCentro.url)
                 startActivity(intent)
             })
             BuildMarkerUserLocation()
