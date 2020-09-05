@@ -20,7 +20,7 @@ class SignInActivity : AppCompatActivity() {
         hideLoadingScreen()
 
         btn_signin.setOnClickListener{
-            showLoadingScreen()
+            //showLoadingScreen()
             val nombreUsuario=editText_nombre.text.toString()
             val email=editText_correo.text.toString()
             val contrasena=editText_contraseña.text.toString()

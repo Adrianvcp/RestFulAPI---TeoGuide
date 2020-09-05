@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
             }.addOnFailureListener{
                 hideLoadingScreen()
+                Log.d("FIREBASE USER", "ENTROO AQUIII ETNONCES TAMOS JODIDOS")
                 Toast.makeText(this,it.message, Toast.LENGTH_SHORT).show()
             }
         }
